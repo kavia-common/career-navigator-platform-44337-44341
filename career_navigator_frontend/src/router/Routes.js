@@ -3,6 +3,9 @@ export const ROUTES = {
   recommendations: '/recommendations',
   library: '/library',
   goals: '/goals',
+  roleSelection: '/select-roles',
+  gapAnalysis: '/gap-analysis',
+  mindMap: '/mind-map'
 };
 
 export default ROUTES;

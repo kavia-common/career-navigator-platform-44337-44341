@@ -41,9 +41,27 @@ Do not commit a .env; create a `.env.local` during development if needed.
 
 - `src/components/common` — Button, Card, SearchBar, etc.
 - `src/components/layout` — TopNav, Sidebar
-- `src/pages` — Explore, Recommendations, Library, Goals
+- `src/pages` — Explore, Recommendations, Library, Goals, RoleSelection, GapAnalysis, MindMap
 - `src/hooks` — `useAsync`, `useTheme`
 - `src/store` — simple context provider
+
+## New MVP Flows
+
+- **Role Selection & Assessment**: `/select-roles` — Select current and target roles (fetches `/roles`), plus competency model (fetches `/competency-models`). 
+- **Gap Analysis**: `/gap-analysis` — Compare required and current skills (`/skills`, `/gap-analysis` endpoints).
+- **Visual Mind Map/Graph**: `/mind-map` — Visual roadmap of skills and progress (planned to use D3.js/Cytoscape.js).
+- **Per-Skill Progress**: (future) UI controls to mark "Not started", "Working on", "Completed" with API `/progress` (see `apiClient.js`).
+
+## New API Endpoints (stubs in API client)
+
+- `GET /roles` — List available roles
+- `GET /competency-models` — List skill models/frameworks
+- `GET /skills?role=<role>` — Get required skills for a role
+- `POST /gap-analysis` — Compare user/required skills
+- `GET /recommendations?gaps=<gaps>` — Action recommendations for gaps
+- `POST /progress` — Save skill progress
+
+See `src/services/apiClient.js` for interface.
 
 ## Accessibility Notes
 
