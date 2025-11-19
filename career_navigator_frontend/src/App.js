@@ -10,9 +10,9 @@ import Goals from './pages/Goals';
 import NotFound from './pages/NotFound';
 import { ThemeProvider } from './store/simpleStore';
 
-// PUBLIC_INTERFACE
+/* PUBLIC_INTERFACE */
 function AppShell() {
-  /** App shell combining TopNav, Sidebar, and main content outlet with routing. */
+  /** App shell combining TopNav, Sidebar, and main content outlet with routing and accessible skip target. Routes: /, /recommendations, /library, /goals. */
   return (
     <div className="app-shell">
       <div className="topnav">
@@ -21,7 +21,7 @@ function AppShell() {
       <aside className="sidebar" aria-label="Sidebar navigation">
         <Sidebar />
       </aside>
-      <main className="content" id="main-content" tabIndex="-1">
+      <main className="content" id="main-content" tabIndex="-1" aria-live="polite">
         <Routes>
           <Route path="/" element={<Explore />} />
           <Route path="/recommendations" element={<Recommendations />} />

@@ -27,7 +27,10 @@ export default function Library() {
         {(data || []).map((r) => (
           <div className="card-item" key={r.id}>
             <Card title={r.title} subtitle={`${r.type} • ${r.source}`}>
-              <Button variant="secondary">Open</Button>
+              <div style={{display:'flex', gap:8, alignItems:'center', justifyContent:'space-between'}}>
+                <span className={`badge ${r.type === 'Course' ? 'success' : r.type === 'Article' ? 'warn' : 'info'}`}>{r.type}</span>
+                <a href="#" onClick={(e)=>e.preventDefault()} aria-label={`Open ${r.title}`} className="btn secondary">Open</a>
+              </div>
             </Card>
           </div>
         ))}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ROUTES from '../../router/Routes';
 
@@ -6,6 +6,15 @@ import ROUTES from '../../router/Routes';
 export default function Sidebar() {
   /** Sidebar navigation with collapsible behavior on mobile. */
   const [open, setOpen] = useState(true);
+
+  // Show toggle on small screens by default
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 900px)');
+    const apply = () => setOpen(!mq.matches); // closed when small
+    apply();
+    mq.addEventListener?.('change', apply);
+    return () => mq.removeEventListener?.('change', apply);
+  }, []);
 
   const navLinkClass = ({ isActive }) =>
     `navlink ${isActive ? 'nav-active' : ''}`;
@@ -17,7 +26,7 @@ export default function Sidebar() {
         aria-expanded={open}
         aria-controls="sidebar-nav"
         onClick={() => setOpen(o => !o)}
-        style={{width:'100%', marginBottom:12, display:'none'}}
+        style={{width:'100%', marginBottom:12, display:'block'}}
       >
         ☰ Menu
       </button>

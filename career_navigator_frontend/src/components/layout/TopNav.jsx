@@ -10,6 +10,7 @@ export default function TopNav() {
     <nav className="container" aria-label="Top navigation" style={{display:'flex', alignItems:'center', gap:16, height:64}}>
       <div style={{display:'flex', alignItems:'center', gap:10}}>
         <img src={logo} alt="Career Navigator logo" height={28} />
+        <strong style={{color:'var(--color-primary)'}}>Career Navigator</strong>
       </div>
       <div style={{flex:1, maxWidth:640, margin:'0 auto'}}>
         <SearchBar placeholder="Search careers, skills, industries..." ariaLabel="Global search" />

@@ -1,82 +1,58 @@
-# Lightweight React Template for KAVIA
+# Career Navigator Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Classic, professional UI built with plain React and CSS for the Career Navigator Platform.
 
-## Features
+## Highlights
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Ocean Professional theme (see `src/index.css` and `src/App.css`)
+- App shell with TopNav + Sidebar + main content
+- Routes: `/` Explore, `/recommendations`, `/library`, `/goals`
+- Accessible navigation and focus styles
+- Local mock data with an easy path to a real API
 
-## Getting Started
+## Run locally
 
-In the project directory, you can run:
+- `npm start` — dev server on http://localhost:3000
+- `npm test` — unit tests
+- `npm run build` — production build
 
-### `npm start`
+## Extending to real APIs
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Base URL is resolved by `src/utils/env.js`:
+  - REACT_APP_API_BASE or REACT_APP_BACKEND_URL
+- Use `src/services/apiClient.js`:
+  - PUBLIC_INTERFACE get(path) and post(path, body)
+  - Example:
+    ```js
+    import api from './services/apiClient';
+    const careers = await api.get('/careers');
+    ```
+- Pages currently fetch mock data from `src/services/careers.js`. Replace those functions with API calls when backend is ready.
 
-### `npm test`
+Environment variables recognized:
+- REACT_APP_API_BASE
+- REACT_APP_BACKEND_URL
+- REACT_APP_FEATURE_FLAGS
+- REACT_APP_EXPERIMENTS_ENABLED
 
-Launches the test runner in interactive watch mode.
+Do not commit a .env; create a `.env.local` during development if needed.
 
-### `npm run build`
+## Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `src/components/common` — Button, Card, SearchBar, etc.
+- `src/components/layout` — TopNav, Sidebar
+- `src/pages` — Explore, Recommendations, Library, Goals
+- `src/hooks` — `useAsync`, `useTheme`
+- `src/store` — simple context provider
 
-## Customization
+## Accessibility Notes
 
-### Colors
+- ARIA labels on top nav, sidebar, search, and drawer placeholder
+- Keyboard focus ring via `--focus-ring`
+- Sidebar collapsible on small screens with a visible toggle
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+## Styling
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- CSS variables define the theme
+- Subtle shadows and clean layout
+- Badge classes for consistent tags (`.badge.info`, `.badge.primary`, `.badge.warn`, `.badge.success`)
